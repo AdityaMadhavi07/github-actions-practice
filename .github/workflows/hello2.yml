@@ -14,7 +14,7 @@ jobs:
       - name: Print Greeting message
         run: echo "Hello from GithubActions!"
 
-     - name: Display Date and Time
+      - name: Display Date and Time
         uses: date
 
       - name: Display Branch name
