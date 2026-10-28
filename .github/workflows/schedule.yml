@@ -1,0 +1,19 @@
+
+name: Daily Schedule Workflow
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  schdeuled-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Scheduled Message
+        run: echo "This workflow is scheduled to run at midnight UTC"
+
+      - name: Print Current date and time
+        run: date
