@@ -8,20 +8,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository code
+      - name: Checkout Repository Code
         uses: actions/checkout@v4
 
-      - name: Print Greeting message
-        run: echo "Hello from GithubActions!"
+      - name: Print greeting message
+        run: echo "Hello from Github Actions!"
 
       - name: Display Date and Time
-        uses: date
+        run: date
 
       - name: Display Branch name
-        uses: echo "Triggered from branch ${{ github.ref_name }}"
+        run: echo "Triggered from branch ${{ github.ref_name }}"
 
       - name: Listing Files in Repo
-        uses: ls -la
+        run: ls -la
 
       - name: Display runners OS
-        uses: echo "Runner OS is $RUNNER_OS"
+        run: echo "Runner OS is $RUNNER_OS"
