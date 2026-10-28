@@ -13,3 +13,15 @@ jobs:
 
       - name: Print Greeting message
         run: echo "Hello from GithubActions!"
+
+     - name: Display Date and Time
+        uses: date
+
+      - name: Display Branch name
+        uses: echo "Triggered from branch ${{ github.ref_name }}"
+
+      - name: Listing Files in Repo
+        uses: ls -la
+
+      - name: Display runners OS
+        uses: echo "Runner OS is $RUNNER_OS"
