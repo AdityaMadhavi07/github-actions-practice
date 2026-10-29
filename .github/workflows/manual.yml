@@ -1,0 +1,22 @@
+name: Manual Trigger Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:     # defines the values user must provide before starting the workflow
+      environment:      # input name
+        description: Select the target Environment
+        required: true
+        default: staging
+        type: choice        # shows a dropdown
+        options:        # values in dropdown
+          - staging
+          - production
+
+jobs:
+  show-environment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print selected environment
+        run: echo "Selected environment is ${{ inputs.environment }}"
+  
