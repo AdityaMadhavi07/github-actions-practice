@@ -64,8 +64,7 @@ jobs:
           echo "Docker-Version:"
           docker --version
 
-          echo "Python-Version:"
-          python --version
+          echo "Python-Version: $(python --version)"
 
           echo "Node Version:"
           node --version
