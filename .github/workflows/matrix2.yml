@@ -10,12 +10,10 @@ on:
 jobs:
   test-python:
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
-
     runs-on: ${{ matrix.os }}
 
- #   strategy:
- #    fail-fast: false
-
+    strategy:
+      fail-fast: false
       matrix:
         os:
           - ubuntu-latest
@@ -45,6 +43,6 @@ jobs:
       - name: Print OS Version
         run: echo "Running on ${{ matrix.os }}"
 
-#      - name: Fail 1 matrix combination intensionally
+#      - name: Fail 1 matrix combination intentionally
 #        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
 #        run: exit 1
