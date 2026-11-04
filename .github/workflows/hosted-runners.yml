@@ -61,16 +61,16 @@ jobs:
     steps:
       - name: Print Tool Versions
         run: |
-          echo: "Docker-Version:"
+          echo "Docker-Version:"
           docker --version
 
-          echo: "Python-Version:"
+          echo "Python-Version:"
           python --version
 
-          echo: "Node Version:"
+          echo "Node Version:"
           node --version
 
-          echo: "Git Version:"
+          echo "Git Version:"
           git --version  
 
 
