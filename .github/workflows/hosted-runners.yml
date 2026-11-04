@@ -25,8 +25,8 @@ jobs:
   windows-latest:
     name: Windows-Server
     runs-on: windows-latest
-      steps:
-        name: Print Windows runner info
+    steps:
+      - name: Print Windows runner info
         shell: pwsh
         run: |
           write-Host "Operating system:"
@@ -42,7 +42,6 @@ jobs:
   macos-latest:
     name: MacOS Runner
     runs-on: macos-latest
-
     steps:
       - name: Print macos runner info
         shell: bash
