@@ -34,7 +34,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Print Python Version
-        run: echo "Python version used is: $(python --version )"
+        run: python --version
 
       - name: Print OS Version
         run: echo "Running on ${{ matrix.os }}"
