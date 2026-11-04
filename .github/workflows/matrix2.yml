@@ -3,7 +3,7 @@ name: Python Matrix Build
 on:
   push:
     paths:
-     - ".github/workflows/**"
+     - ".github/workflows/matrix2.yml"
   
   workflow_dispatch:
 
@@ -13,8 +13,8 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
-    strategy:
-      fail-fast: false
+ #   strategy:
+ #    fail-fast: false
 
       matrix:
         os:
@@ -45,6 +45,6 @@ jobs:
       - name: Print OS Version
         run: echo "Running on ${{ matrix.os }}"
 
-      - name: Fail 1 matrix combination intensionally
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        run: exit 1
+#      - name: Fail 1 matrix combination intensionally
+#        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
+#        run: exit 1
