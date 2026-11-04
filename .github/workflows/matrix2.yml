@@ -3,7 +3,7 @@ name: Python Matrix Build
 on:
   push:
     paths:
-     - ".github/workflows/matrix.yml"
+     - ".github/workflows"
   
   workflow_dispatch:
 
