@@ -1,0 +1,42 @@
+name: Self-Hosted Runner Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  self-hosted-job:
+    name: Run on my linux machine
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print machine information
+        shell: bash
+        run: |
+          echo "Runner name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner architecture: $RUNNER_ARCH"
+
+          echo "Machine Hostname: $(hostname)"
+          echo "Current User: $(whoami)"
+          echo "Current Working Directory: $(pwd)"
+
+      - name: Create Verification File
+        shell: bash
+        run: |
+          echo "Created by GitHub Actions" > self-hosted-proof.txt
+          echo "Runner: $RUNNER_NAME" >> self-hosted-proof.txt
+          echo "Repository: $GITHUB_REPOSITORY" >> self-hosted-proof.txt
+          echo "Workflow run ID: $GITHUB_RUN_ID" >> self-hosted-proof.txt
+          echo "Created at: $(date)" >> self-hosted-proof.txt
+
+      - name: Verify File
+        shell: bash
+        run: | 
+          echo "File Details:"
+          ls -l self-hosted-proof.txt
+
+          echo "File contents:"
+          cat self-hosted-proof.txt
