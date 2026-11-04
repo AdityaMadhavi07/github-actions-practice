@@ -1,0 +1,57 @@
+name: Github Hosted runners Demo
+
+on:
+  workflow_dispatch
+  push:
+
+jobs:
+  ubuntu-latest:
+    name: Ubuntu Runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Ubuntu runner info
+        shell: bash
+        run: |
+          echo "Operating System:"
+          uname -a
+
+          echo "Hostname:"
+          hostname
+
+          echo "Current-User:"
+          whoami
+
+  windows-latest:
+    name: Windows-Server
+    runs-on: windows-latest
+      steps:
+        name: Print Windows runner info
+        shell: pwsh
+        run: |
+          write-Host "Operating system:"
+          Get-CimInstance Win32_OperatingSystem |
+          Select-Object Caption, Version, OSArchitecture
+
+          Write-Host "Hostname:"
+          hostname
+
+          Write-Host "Current-User:"
+          whoami          
+
+  macos-latest:
+    name: MacOS Runner
+    runs-on: macos-latest
+
+    steps:
+      - name: Print macos runner info
+        shell: bash
+        run: |
+          echo "Operating System:"
+          sw_vers
+
+          echo "Hostname:"
+          hostname
+
+          echo "Current user"
+          whoami
