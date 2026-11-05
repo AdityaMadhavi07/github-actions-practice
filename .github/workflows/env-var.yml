@@ -8,7 +8,7 @@ env:
   APP_NAME: myapp
 
 jobs:
-  show-env variables:
+  show-env-variables:
     runs-on: ubuntu-latest
 
     env: 
