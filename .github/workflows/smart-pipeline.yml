@@ -1,0 +1,60 @@
+name: Smart Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"    #will run on pushing to any branch
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Run Lint
+        run: |
+          echo "Running lint checks"
+          echo "Lint completed successfully"
+          
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Run Tests
+        run: |
+          echo "Running tests"
+          echo "Tests completed successfully"
+
+        
+  summary:
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+
+    steps:
+      - name: Print branch type
+        run: |
+          if [ "${{ github.ref }} == "refs/heads/main "]; then
+            echo "this is a main branch push"
+          else
+            echo "this is a feature branch push"
+          fi
+
+      - name: Print commit information
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
+
+      - name: Print Job results
+        run: |
+          echo "Lint result: ${{ needs.lint.result }}"
+          echo "Test result: ${{ needs.test.result }}"

@@ -1,0 +1,37 @@
+name: Conditionals Practice
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  conditional-steps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run only on main branch
+        if: github.ref == 'refs/heads/main' #for a dev branch ref= refs/heads/feature/dev
+        run: echo "i am running on main branch"
+
+      - name: Stimulating a non-blocking failure
+        id: risky-step
+        continue-on-error: true
+        run: |
+          echo "this step will fail but the job will continue"
+          exit 1    #this goes as the outcome
+
+      - name: Run only when a step is failed
+        if: steps.risky-step.outcome == 'failure'
+        run: echo "This step is running because the previous risky step failed"
+
+      - name: Final Step
+        run: echo "workflow continued after the allowed failure"
+
+  push-only-job:
+    if: github.event_name == 'push'     #what are other github events?
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Confirm Push event
+        run: echo "This job runs only for push events"
