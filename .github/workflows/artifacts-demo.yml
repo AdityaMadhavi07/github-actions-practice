@@ -1,0 +1,38 @@
+name: artifacts-demo.yml
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  secret-demo:
+    runs-on: ubuntu-latest
+
+
+    Steps:
+      - name: Create Test Report
+        run: |
+          mkdir -p reports
+
+          {
+            echo "Day 44 test report"
+            echo "============="
+            echo "Status: Passed"
+            echo "Runner OS: $RUNNER_OS"
+            echo "Commit SHA: $GITHUB_SHA"
+            echo "Workflow: $GITHUB_WORKFLOW"
+            echo "Generated at: $(date -u)"
+            > reports/test-report.txt
+               
+          }
+      - name: Display Generated Report
+        run: cat reports/test-report.txt
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report   #artifact will be displayed with this name
+          path: reports/test-report.txt
+          retention-days: 7
+          if-no-files-found: error
+
+          
