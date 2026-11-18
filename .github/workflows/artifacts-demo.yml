@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
 
-    Steps:
+    steps:
       - name: Create Test Report
         run: |
           mkdir -p reports
@@ -21,9 +21,9 @@ jobs:
             echo "Commit SHA: $GITHUB_SHA"
             echo "Workflow: $GITHUB_WORKFLOW"
             echo "Generated at: $(date -u)"
-            > reports/test-report.txt
+          } > reports/test-report.txt
                
-          }
+          
       - name: Display Generated Report
         run: cat reports/test-report.txt
 
