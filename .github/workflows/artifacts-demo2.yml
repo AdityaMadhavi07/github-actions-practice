@@ -1,0 +1,43 @@
+name: artifacts-btn-jobs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: generate deployment information
+        run: |
+          mkdir -p output
+
+          {
+            echo "Application: github-action-pract"
+            echo "Environment: test"
+            echo "Commit: $GITHUB_SHA"
+            echo "build status: ready"
+          } > output/build-info.txt
+
+      - name: upload build information
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-information
+          path: output/build-info.txt
+          retention-days: 7
+          if-no-files-found: error
+
+  consume-report:
+    runs-on: ubuntu-latest
+    needs: generate-report
+      
+      steps:
+        - name: download build information
+          uses: actions/download-artifact@v4
+          with:
+            name: build-information
+            path: downloaded-artifact
+            
+        - name: List downloaded files
+          run: find downloaded-artifact -type f
+
