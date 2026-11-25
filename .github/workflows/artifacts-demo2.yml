@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: generate-report
       
-      steps:
+    steps:
         - name: download build information
           uses: actions/download-artifact@v4
           with:
